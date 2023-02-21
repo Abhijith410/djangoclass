@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sum</title>
+    {% load static %}
+</head>
+<body>
+    <form method="post" action="">
+        {% load static %}
+        {% csrf_token %}
+        <label for="">Number 1</label>
+        <input type="number" name="num1" id="num1">
+        <span id="error1"></span><br>
+        <label for="">Number 2</label>
+        <input type="number" name="num2" id="num2">
+        <span id="error2"></span><br>
+        <button onclick="return sumvalidate()" type="submit">sum</button><br>
+        <label for="">Sum</label>
+        <input type="number" name="sum" id="" value="{{res}}">
+    </form>
+    <script src="{% static 'sumvalidation.js' %}" type="text/javacsript"></script>
+</body>
+</html>

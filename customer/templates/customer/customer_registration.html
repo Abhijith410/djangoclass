@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    <form action="{% url 'cust:reg' %}" method="post">
+        {% csrf_token %}
+        <label for="">Name</label>
+        <input type="text" name="name" id=""><br><br>
+        <label for="">Phone number</label>
+        <input type="number" name="number" id=""><br><br>
+        <label for="">Address</label>
+        <textarea name="address" id="" cols="30" rows="10"></textarea><br><br>
+        <label for="">DOB</label>
+        <input type="date" name="dob" id=""><br><br>
+        <label for="">Gender</label>
+        <input type="radio" name="gender" id="" value="Male">Male
+        <input type="radio" name="gender" id="" value="Female">Female <br>
+        <label for="">Username</label>
+        <input onkeyup="checkusername()" type="text" name="username" id="cust_user"><br><br>
+        <label for="">Password</label>
+        <input type="password" name="password" id=""><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <p>{{msg}}</p>
+
+    <script>
+        $.ajaxSetup({
+                headers: {
+                  "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()
+                }
+            })
+        function checkusername(){
+            $.ajax({
+                url:'checkusernameavailable/', 
+                type:'POST',
+                data: {
+                    customer_username: $('#cust_user').val()
+                },
+                success: function(response){
+                    console.log(response.is_available)
+                }
+            })
+        }
+    </script>
+</body>
+</html>

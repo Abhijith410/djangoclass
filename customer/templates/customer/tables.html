@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>delete</th>
+                <th>update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in cust_data %}
+            <tr>
+                <td>{{customer.cust_name}}</td>
+                <td>{{customer.cust_contact}}</td>
+                <td>{{customer.cust_address}}</td>
+                <td>{{customer.cust_dob|date:'Y-m-d'}}</td>
+                <td>{{customer.cust_gender}}</td>
+                <td><a href="{% url 'cust:delete_customer' customer.id %}">delete</a></td>
+                <td><a href="{% url 'cust:update_customer' customer.id %}">update</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

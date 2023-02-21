@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="">Name</label>
+        <input type="text" name="name" id="" value="{{cust.cust_name}}"><br><br>
+        <label for="">Phone number</label>
+        <input type="number" name="number" id="" value="{{cust.cust_contact}}"><br><br>
+        <label for="">Address</label>
+        <textarea name="address" id="" name="address" cols="30" rows="10">{{cust.cust_address}}</textarea><br><br>
+        <label for="">DOB</label>
+        <input type="date" name="dob" id="" name="dob" value="{{cust.cust_dob|date:'Y-m-d'}}"><br><br>
+        <label for="">Gender</label>
+        <input type="radio" name="gender" id="" value="Male" {% if cust.cust_gender != 'Female' %} checked {% endif %}>Male
+        <input type="radio" name="gender" id="" value="Female" {% if cust.cust_gender != 'Male' %} checked {% endif %}>Female <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
