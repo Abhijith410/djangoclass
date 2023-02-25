@@ -20,9 +20,10 @@
         <input type="date" name="dob" id=""><br><br>
         <label for="">Gender</label>
         <input type="radio" name="gender" id="" value="Male">Male
-        <input type="radio" name="gender" id="" value="Female">Female <br>
+        <input type="radio" name="gender" id="" value="Female">Female <br><br>
         <label for="">Username</label>
-        <input onkeyup="checkusername()" type="text" name="username" id="cust_user"><br><br>
+        <input onkeyup="checkusername()" type="text" name="username" id="cust_user"><br>
+        <span id="checkuser_name"></span><br><br>
         <label for="">Password</label>
         <input type="password" name="password" id=""><br><br>
         <button type="submit">Submit</button>
@@ -44,6 +45,14 @@
                 },
                 success: function(response){
                     console.log(response.is_available)
+                    if (response.is_available == true){
+                        $('#checkuser_name').html("Username is already taken. Try another one.")
+                        $('#checkuser_name').css("color", "red")
+                    }
+                    else{
+                        $('#checkuser_name').html("Username available")
+                        $('#checkuser_name').css("color", "green")
+                    }
                 }
             })
         }

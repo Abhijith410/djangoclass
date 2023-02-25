@@ -13,5 +13,7 @@ urlpatterns = [
     path('login/', views.login, name = "login"),
     path('customerhome/', views.home, name = "homepage"),
     path('logoutcustomer', views.customer_logout, name = "logout"),
-    path('checkusernameavailable/', views.customer_usercheck, name ="usernamecheck")
+    path('checkusernameavailable/', views.customer_usercheck, name ="usernamecheck"),
+    path('apicustomerregister/', views.apicustregister, name = "cregister"),
+    path('apigetcustomer/', views.apigetcustomers, name = "apigetcustomer")    
 ]

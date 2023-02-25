@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from . models import *
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 def addnumbers(request):
@@ -101,3 +103,16 @@ def customer_usercheck(request):
         return JsonResponse({'is_available': True})
     else:
         return JsonResponse({'is_available': False})
+
+@api_view(['POST'])
+def apicustregister(request):
+    params = request.data
+    customer = Customers(cust_name = params['c_name'],cust_contact = params['c_contact'],cust_address = params['c_address'],cust_dob = params['c_dob'],cust_gender = params['c_gender'],cust_username = params['c_username'],cust_password = params['c_password'])
+    customer.save()
+    return JsonResponse({'message': 'data inserted successfully'})
+
+@api_view(['GET'])
+def apigetcustomers(request):
+    customers = Customers.objects.all()
+    data = [{'id': c.id, 'name': c.cust_name, 'contact': c.cust_contact, 'address': c.cust_address, 'dob': c.cust_dob, 'gender': c.cust_gender, 'username': c.cust_username, 'password': c.cust_password } for c in customers]
+    return JsonResponse({'Customer_details': data}) 
