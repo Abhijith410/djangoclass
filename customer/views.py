@@ -116,3 +116,14 @@ def apigetcustomers(request):
     customers = Customers.objects.all()
     data = [{'id': c.id, 'name': c.cust_name, 'contact': c.cust_contact, 'address': c.cust_address, 'dob': c.cust_dob, 'gender': c.cust_gender, 'username': c.cust_username, 'password': c.cust_password } for c in customers]
     return JsonResponse({'Customer_details': data}) 
+
+@api_view(['DELETE'])
+def apideletecustomer(request,cust_id):
+    Customers.objects.get(id = cust_id).delete()
+    return Response("data deleted successfully")
+
+@api_view(['PUT'])
+def apiupdatecustomer(request,cust_id):
+    params = request.data
+    Customers.objects.filter(id = cust_id).update(cust_name = params['c_name'],cust_contact = params['c_contact'],cust_address = params['c_address'],cust_dob = params['c_dob'],cust_gender = params['c_gender'],cust_username = params['c_username'],cust_password = params['c_password'])
+    return JsonResponse({'message': 'data updated successfully'})

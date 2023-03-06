@@ -15,5 +15,7 @@ urlpatterns = [
     path('logoutcustomer', views.customer_logout, name = "logout"),
     path('checkusernameavailable/', views.customer_usercheck, name ="usernamecheck"),
     path('apicustomerregister/', views.apicustregister, name = "cregister"),
-    path('apigetcustomer/', views.apigetcustomers, name = "apigetcustomer")    
+    path('apigetcustomer/', views.apigetcustomers, name = "apigetcustomer"),
+    path('apicustomerdelete/<int:cust_id>', views.apideletecustomer, name = "apidelete"),    
+    path('apiupdatecustomers/<int:cust_id>', views.apiupdatecustomer, name= "apicustomerupdate"),
 ]
